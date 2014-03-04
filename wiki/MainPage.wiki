@@ -24,3 +24,12 @@ The firmware enumerates the programmer to the PC as a HID device. The advantage 
 = PC (host) sofware =
 
 The host software is command line program written in C++. Except for the APIs which send and receive data through USB, the rest of the program only uses the standard C++ library. It can be compiled on Linux (tested with gcc 4.8 on Arm Linux) and on Windows using MinGW.
+
+= Examples =
+
+The package contains a few example projects which demonstrate how to achieve some of the more common things tasks on an nRF MCU. These can be compiled with [http://sdcc.sourceforge.net/ sdcc]. At the moment, there are only a few such examples:
+
+  * *examples/lu1/USB* - implements a standard USB keyboard on an nRF24LU1+. It only shows how to configure USB and send HID reports, RF is not implemented.
+  * *examples/lu1/int0* - shows the very basics of how to implement interrupt service routines on the nRF24LU1+
+
+The plan is to extend these with an example of a fully working wireless USB keyboard.
