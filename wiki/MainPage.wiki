@@ -2,20 +2,20 @@
 
 = Introduction =
 
-nrfburn is a set of hardware ans software tools that can be used to access the flash area of Nordic Semiconductor's nRF24 family of microcontrollers. It can be used to read and write the flash area of nRF24LE1 and nRF24LU1+ (both 16 and 32 kbyte versions).
+nrfburn is a set of hardware and software tools that can be used to access the flash area of Nordic Semiconductor's nRF24 family of microcontrollers. It can be used to read and write the flash area of nRF24LE1 and nRF24LU1+ (both 16 and 32 kbyte versions).
 
 The programmer connects to the host PC through USB. It is a HID class USB device which means that drivers for Windows are not needed. Considering it is a low-speed HID device, it is relatively fast: it writes and verifies a 4 kbyte program to a 32 kbyte nRF24LU1+ in about 3 seconds.
 
 
 = Programmer hardware =
 
-The hardware is built around Atmel's ATmega88pa microcontroller. It communicates with the host PC through low-speed USB using [http://www.obdev.at/products/vusb/index.html Objective Development's firmware-only USB driver for Atmel AVR microcontrollers]. The circuit is powered at 3.3V with a LM3940 voltage regulator which drops the USB's VBUS 5V down to 3.3V. This way it is possible to directly interface the AVR with the nRF through SPI without a buffer chip.
+The hardware is built around Atmel's ATmega88pa microcontroller. It communicates with the host PC through low-speed USB using [http://www.obdev.at/products/vusb/index.html Objective Development's firmware-only USB driver for Atmel AVR microcontrollers]. The circuit is powered at 3.3V through a LM3940 voltage regulator which drops the USB's VBUS 5V down to 3.3V. This way it is possible to directly interface the AVR with the nRF through SPI without a level shifter or buffer chip.
 
-The nRF programming interface requires 5 lines: MISO, MOSI, SCK, CSN and PROG. An optional RESET line is also present and used by the programmer, but is not necessary for flashing. These are brought out on the programmer PCB to two pin headers which are pin compatible with the SparkFun's nRF24LU1+ breakout and a generic Chinese nRF24LU1+ dongle. Other breakouts and dongles can be interfaced to the programmer with simple wires.
+The nRF programming interface requires 5 lines: MISO, MOSI, SCK, CSN and PROG. An optional RESET line is also present and used by the programmer, but is not necessary for correct flashing. These lines are brought out on the programmer PCB to two pin headers which are pin compatible with the SparkFun's nRF24LU1+ breakout and a generic Chinese nRF24LU1+ USB dongle. Other breakouts and dongles can be interfaced to the programmer with simple wires.
 
-Because the SparkFun nRF24LU1+ breakout also has pins P0.4 and P0.5 brought out, the programmer has LEDs connected to these two lines. This helps with debugging and testing uploaded firmwares.
+Because the SparkFun nRF24LU1+ breakout also has pins P0.4 and P0.5 brought out, the programmer has LEDs connected to these two lines. This can be helpful for debugging and testing uploaded firmwares.
 
-It is possible to power the nRF mcu directly from the programmer. Because nRF24LU1+ are powered at 5V and nRF24LE1 at 3.3V, the output voltage that is used to power the nRF can be selected with a jumper. *Warning:* care must be taken to avoid damaging the nRF24LE1 by selecting to power it with 5V. This will probably destroy the chip.
+It is possible to power the nRF MCU directly from the programmer. Because nRF24LU1+ are powered at 5V and nRF24LE1 at 3.3V, the output voltage that is used to power the nRF must be correctly selected with a jumper. *Warning:* care must be taken to avoid damaging the nRF24LE1 by selecting to power it with 5V. This will probably destroy the chip.
 
 = Programmer firmware =
 
@@ -23,11 +23,11 @@ The firmware enumerates the programmer to the PC as a HID device. The advantage 
 
 = PC (host) sofware =
 
-The host software is command line program written in C++. Except for the APIs which send and receive data through USB, the rest of the program only uses the standard C++ library. It can be compiled on Linux (tested with gcc 4.8 on Arm Linux) and on Windows using MinGW.
+The host software is a command line program written in C++. Except for the APIs which send and receive data through USB, the rest of the program only uses the standard C++ library. It can be compiled on Linux (tested with gcc 4.8 on Arm Linux) and on Windows using MinGW.
 
 = Examples =
 
-The package contains a few example projects which demonstrate how to achieve some of the more common things tasks on an nRF MCU. These can be compiled with [http://sdcc.sourceforge.net/ sdcc]. At the moment, there are only a few such examples:
+The package contains a few example projects which demonstrate how to achieve some of the more common tasks on an nRF MCU. These can be compiled with [http://sdcc.sourceforge.net/ sdcc], an open source C compiler for 8051 MCUs. At the moment, there are only a few such examples:
 
   * *examples/lu1/USB* - implements a standard USB keyboard on an nRF24LU1+. It only shows how to configure USB and send HID reports, RF is not implemented.
   * *examples/lu1/int0* - shows the very basics of how to implement interrupt service routines on the nRF24LU1+
