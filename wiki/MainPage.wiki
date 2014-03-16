@@ -21,6 +21,8 @@ It is possible to power the nRF MCU directly from the programmer. Because nRF24L
 
 The firmware enumerates the programmer to the PC as a HID device. The advantage of this is that no drivers are needed on Windows, but also limits the speed at which the PC and the programmer can communicate - which is normally only 800 bytes/sec for HID interrupt endpoints. To get around this the programmer uses HID feature requests to send and receive data to and from the PC. This way it is possible to achieve 4-5 kbytes/sec transfer rates. This same method was used earlier by [http://www.obdev.at/products/vusb/avrdoper.html avrdoper].
 
+The programmer firmware can be updated using a bootloader. The bootloader is based on [http://www.obdev.at/products/vusb/bootloadhid.html BootloaderHID].
+
 = PC (host) sofware =
 
 The host software is a command line program written in C++. Except for the APIs which send and receive data through USB, the rest of the program only uses the standard C++ library. It can be compiled on Linux (tested with gcc 4.8 on Arm Linux) and on Windows using MinGW.
