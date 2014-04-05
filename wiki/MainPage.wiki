@@ -9,7 +9,7 @@ The programmer connects to the host PC through USB. It is a HID class USB device
 
 = Programmer hardware =
 
-The hardware is built around Atmel's ATmega88pa microcontroller. It communicates with the host PC through low-speed USB using [http://www.obdev.at/products/vusb/index.html Objective Development's firmware-only USB driver for Atmel AVR microcontrollers]. The circuit is powered at 3.3V through a LM3940 voltage regulator which drops the USB's VBUS 5V down to 3.3V. This way it is possible to directly interface the AVR with the nRF through SPI without a level shifter or buffer chip.
+The hardware is built around Atmel's ATmega88p microcontroller. It communicates with the host PC through low-speed USB using [http://www.obdev.at/products/vusb/index.html Objective Development's firmware-only USB driver for Atmel AVR microcontrollers]. The circuit is powered at 3.3V through a LM3940 voltage regulator which drops the USB's VBUS 5V down to 3.3V. This way it is possible to directly interface the AVR with the nRF through SPI without a level shifter or buffer chip.
 
 The nRF programming interface requires 5 lines: MISO, MOSI, SCK, CSN and PROG. An optional RESET line is also present and used by the programmer, but is not necessary for correct flashing. These lines are brought out on the programmer PCB to two pin headers which are pin compatible with the [https://www.sparkfun.com/products/9034 SparkFun's nRF24LU1+ breakout] and a generic Chinese nRF24LU1+ USB dongle. Other breakouts and dongles can be interfaced to the programmer with simple wires.
 
