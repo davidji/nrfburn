@@ -21,7 +21,7 @@ It is possible to power the nRF MCU directly from the programmer. Because nRF24L
 
 The firmware enumerates the programmer to the PC as a HID device. The advantage of this is that no drivers are needed on Windows, but also limits the speed at which the PC and the programmer can communicate - which is normally only 800 bytes/sec for HID interrupt endpoints. To get around this the programmer uses HID feature requests to send and receive data to and from the PC. This way it is possible to achieve 4-5 kbytes/sec transfer rates. This same method was used earlier by [http://www.obdev.at/products/vusb/avrdoper.html avrdoper].
 
-The programmer firmware can be updated using a bootloader located in the upper 2 kilobytes of the programmer firmware. The bootloader is based on [http://www.obdev.at/products/vusb/bootloadhid.html BootloaderHID].
+The programmer firmware can be updated using a bootloader located in the upper 2 kilobytes of the programmer firmware. The bootloader is based on [http://www.obdev.at/products/vusb/bootloadhid.html BootloadHID].
 
 = PC (host) sofware =
 
